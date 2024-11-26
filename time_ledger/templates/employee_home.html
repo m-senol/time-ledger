@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Employee Dashboard</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'styles.css' %}">
+    <script src="{% static 'scripts.js' %}" defer></script>
+</head>
+<body>
+    <div class="container">
+        <h1>Employee Dashboard</h1>
+        <!-- Placeholder for notifications -->
+        <div id="message" class="message">&nbsp</div>
+
+        <ul>
+            <li>
+                <form id="check-in-form" method="POST" action="{% url 'check_in' %}">
+                    {% csrf_token %}
+                    <button type="submit">Check-In</button>
+                </form>
+            </li>
+            <li>
+                <form id="check-out-form" method="POST" action="{% url 'check_out' %}">
+                    {% csrf_token %}
+                    <button type="submit">Check-Out</button>
+                </form>
+            </li>
+            <li>
+                <form id="view-leaves-form" method="POST" action="{% url 'employee_used_leaves_page' %}">
+                    {% csrf_token %}
+                    <button type="submit">View Used Leaves</button>
+                </form>
+            </li>
+            <li>
+                <form id="leave-request-form" method="POST" action="{% url 'leave_form_page' %}">
+                    {% csrf_token %}
+                    <button type="submit">Request Leave</button>
+                </form>
+            </li>
+            <li>
+                <form id="logout-form" method="POST" action="{% url 'logout' %}">
+                    {% csrf_token %}
+                    <button type="submit">Logout</button>
+                </form>
+            </li>
+        </ul>
+    </div>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Manager Dashboard</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'styles.css' %}">
+    <script src="{% static 'scripts.js' %}" defer></script>
+</head>
+<body>
+    <div class="container">
+        <h1>Manager Dashboard</h1>
+        <h2>Late Arrivals</h2>
+        <ul>
+            {% for late in late_arrivals %}
+                <li>{{ late.employee_name }} - Late by {{ late.duration }}</li>
+            {% empty %}
+                <li>No late arrivals recorded.</li>
+            {% endfor %}
+        </ul>
+        <form id="'leave-requests-page'" method="POST" action="{% url 'leave_requests_page' %}">
+            {% csrf_token %}
+            <button type="submit">Manage Leave Requests</button>
+        </form>
+        <div>&nbsp</div>
+        <form id="logout-form" method="POST" action="{% url 'logout' %}">
+            {% csrf_token %}
+            <button type="submit">Logout</button>
+        </form>
+    </div>
+</body>
+</html>
